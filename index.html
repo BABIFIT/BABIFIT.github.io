@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Portfolio of [Your Name], Computer Engineering student." />
+
+  <!-- Fonts: Syne (display) + Source Code Pro (mono accents) + Lato (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Source+Code+Pro:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design Tokens ──────────────────────────────────────────── */
+    :root {
+      --bg:          #0d0f12;
+      --bg-card:     #13161b;
+      --border:      #1f2530;
+      --accent:      #00e5ff;
+      --accent-dim:  #007a8a;
+      --text:        #d4dce8;
+      --text-muted:  #5a6880;
+      --text-head:   #eaf0fb;
+
+      --font-display: 'Syne', sans-serif;
+      --font-mono:    'Source Code Pro', monospace;
+      --font-body:    'Lato', sans-serif;
+
+      --radius:  6px;
+      --gap:     2rem;
+      --section: 6rem;
+    }
+
+    /* ─── Reset & Base ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle grid texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    main, header, footer, nav { position: relative; z-index: 1; }
+
+    a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.75; }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      color: var(--text-head);
+      line-height: 1.1;
+    }
+
+    code, .mono {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      color: var(--accent);
+    }
+
+    img { max-width: 100%; display: block; }
+
+    /* ─── Layout Helpers ─────────────────────────────────────────── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: var(--section) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── Navigation ─────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(13, 15, 18, 0.88);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); opacity: 1; }
+
+    /* ─── Hero ───────────────────────────────────────────────────── */
+    #hero {
+      padding: 7rem 0 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-name {
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-head);
+      margin-bottom: 1rem;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--radius);
+      transition: background 0.2s, color 0.2s, opacity 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background: transparent;
+    }
+
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+
+    /* ─── About ──────────────────────────────────────────────────── */
+    #about p {
+      max-width: 640px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    #about p + p { margin-top: 1rem; }
+
+    /* ─── Projects ───────────────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent-dim);
+      transform: translateY(-3px);
+    }
+
+    .project-type {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-dim);
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--text-head);
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      flex: 1;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.25rem;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+      background: rgba(0, 229, 255, 0.07);
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      color: var(--accent-dim);
+    }
+
+    .project-link {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-top: 0.25rem;
+    }
+
+    /* ─── Skills ─────────────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-group h3 {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-group ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .skill-group li {
+      font-size: 0.9rem;
+      color: var(--text);
+      padding-left: 0.75rem;
+      position: relative;
+    }
+
+    .skill-group li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent-dim);
+    }
+
+    /* ─── Contact ────────────────────────────────────────────────── */
+    #contact {
+      border-bottom: none;
+      text-align: center;
+    }
+
+    #contact .section-title { margin-bottom: 1rem; }
+
+    #contact p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── Fade-in Animation ──────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in:nth-child(1) { animation-delay: 0.05s; }
+    .fade-in:nth-child(2) { animation-delay: 0.15s; }
+    .fade-in:nth-child(3) { animation-delay: 0.25s; }
+    .fade-in:nth-child(4) { animation-delay: 0.35s; }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      #hero { padding: 5rem 0 3rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Navigation ───────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo"><!-- your initials or handle, e.g. JDS --></span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ── Hero ───────────────────────────────────────────────────── -->
+    <section id="hero">
+      <div class="container">
+        <p class="hero-eyebrow fade-in">Portfolio</p>
+        <h1 class="hero-name fade-in">Your Name</h1>
+        <p class="hero-tagline fade-in">
+          Computer Engineering student building at the intersection of hardware and software.
+        </p>
+        <div class="hero-links fade-in">
+          <a href="mailto:you@email.com" class="btn btn-primary">Get in Touch</a>
+          <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+          <!-- Optional: link to your resume PDF
+          <a href="/resume.pdf" target="_blank" class="btn btn-outline">Résumé</a>
+          -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── About ──────────────────────────────────────────────────── -->
+    <section id="about">
+      <div class="container">
+        <p class="section-label">01 — About</p>
+        <h2 class="section-title">Who I Am</h2>
+
+        <!-- Replace with your own bio -->
+        <p>
+          I'm a third-year Computer Engineering student at [Your University], pursuing a double major
+          in Electrical Engineering. I enjoy working across the full stack — from bare-metal firmware
+          and PCB layout to high-level software systems.
+        </p>
+        <p>
+          When I'm not in the lab, you'll find me [hobby / interest]. I'm actively looking for
+          internship and co-op opportunities for [semester/year].
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Projects ───────────────────────────────────────────────── -->
+    <section id="projects">
+      <div class="container">
+        <p class="section-label">02 — Projects</p>
+        <h2 class="section-title">Things I've Built</h2>
+
+        <div class="projects-grid">
+
+          <!-- ── Project Card Template ──
+               Copy & paste this block for each project.
+               project-type: "Hardware", "Software", or "Hardware / Software"
+          -->
+          <div class="project-card">
+            <span class="project-type">Hardware / Software</span>
+            <h3 class="project-title">Project Title</h3>
+            <p class="project-desc">
+              One or two sentences describing what this does and why it's interesting. Focus on
+              outcomes, not process.
+            </p>
+            <div class="tag-list">
+              <span class="tag">C</span>
+              <span class="tag">STM32</span>
+              <span class="tag">KiCad</span>
+              <!-- Add more tags as needed -->
+            </div>
+            <a class="project-link" href="https://github.com/yourusername/repo" target="_blank" rel="noopener">
+              View on GitHub →
+            </a>
+          </div>
+
+          <!-- ── Add more project cards here ── -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Skills ─────────────────────────────────────────────────── -->
+    <section id="skills">
+      <div class="container">
+        <p class="section-label">03 — Skills</p>
+        <h2 class="section-title">What I Work With</h2>
+
+        <div class="skills-grid">
+
+          <div class="skill-group">
+            <h3>Languages</h3>
+            <ul>
+              <li>C / C++</li>
+              <li>Python</li>
+              <li>Verilog / SystemVerilog</li>
+              <!-- Add more -->
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Hardware</h3>
+            <ul>
+              <li>KiCad / Eagle</li>
+              <li>Oscilloscope / Logic Analyzer</li>
+              <li>Soldering & Rework</li>
+              <!-- Add more -->
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Software & Tools</h3>
+            <ul>
+              <li>Git / GitHub</li>
+              <li>Linux</li>
+              <li>MATLAB</li>
+              <!-- Add more -->
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Platforms</h3>
+            <ul>
+              <li>STM32 / ARM Cortex-M</li>
+              <li>Arduino / AVR</li>
+              <li>Raspberry Pi</li>
+              <!-- Add more -->
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact ────────────────────────────────────────────────── -->
+    <section id="contact">
+      <div class="container">
+        <p class="section-label">04 — Contact</p>
+        <h2 class="section-title">Get In Touch</h2>
+        <p>
+          I'm open to internships, co-ops, and interesting conversations.
+          My inbox is always open.
+        </p>
+        <a href="mailto:you@email.com" class="btn btn-primary">Say Hello →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer>
+    <p>Designed &amp; built by Your Name · <!-- year auto-updates -->
+      <script>document.write(new Date().getFullYear())</script>
+    </p>
+  </footer>
+
+</body>
+</html>
