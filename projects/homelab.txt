@@ -7,7 +7,7 @@
 # This file must be listed under [project_files] in info.txt to appear.
 
 name   = Four-Machine Homelab
-status = in-progress
+status = finished
 type   = hybrid
 tech   = Linux, Virtualization, Backups, Networking
 

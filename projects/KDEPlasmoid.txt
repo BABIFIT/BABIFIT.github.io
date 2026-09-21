@@ -1,9 +1,9 @@
 # Copy this file, rename it, and add the new name to [project_files]
 # in info.txt. Files starting with _ are ignored unless you list them.
 
-name   =
+name   = KDE Plasmoid Widget to Display Number of Open Windows
 # finished | in-progress | future | proprietary
-status = in-progress
+status = finished
 # hardware | software | hybrid
 type   = software
 tech   =

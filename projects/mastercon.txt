@@ -1,7 +1,7 @@
 # Copy this file, rename it, and add the new name to [project_files]
 # in info.txt. Files starting with _ are ignored unless you list them.
 
-name   =
+name   = DB-37 Master-Connector to Connect Any of my PCs to a KVM Box
 # finished | in-progress | future | proprietary
 status = in-progress
 # hardware | software | hybrid

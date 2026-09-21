@@ -8,7 +8,7 @@
 
 name   = Retro PC & CRT Restoration
 status = in-progress
-type   = hardware
+type   = hybrid
 tech   = Board-level Repair, Soldering, Oscilloscope
 
 desc   = Ongoing board-level repair and restoration of retro computers and CRT

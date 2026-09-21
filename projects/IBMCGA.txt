@@ -1,11 +1,11 @@
 # Copy this file, rename it, and add the new name to [project_files]
 # in info.txt. Files starting with _ are ignored unless you list them.
 
-name   =
+name   = IBM CGA Card Schematic Trace and Chip Replacement
 # finished | in-progress | future | proprietary
-status = in-progress
+status = finished
 # hardware | software | hybrid
-type   = software
+type   = hardware
 tech   =
 
 desc   =
