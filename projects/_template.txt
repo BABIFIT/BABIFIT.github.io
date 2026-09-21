@@ -1,0 +1,28 @@
+# Copy this file, rename it, fill it in. That's all — every .txt in
+# this folder is picked up automatically.
+#
+# Files starting with _ are ignored, so _template.txt never shows up
+# and you can hide a draft by renaming it _draft-something.txt.
+# A copy you haven't filled in yet is skipped too, so an empty file
+# won't appear as a blank card.
+
+name   =
+# finished | in-progress | future | proprietary
+status = in-progress
+# hardware | software | hybrid
+type   = software
+tech   =
+
+desc   =
+
+# Link to a repo, demo, or write-up. Leave empty for no link.
+url    =
+# Bordered callout on the card. Good for "what I can say" on
+# proprietary work.
+note   =
+
+# IMAGE: drop an image next to this file with the SAME name and any
+# common extension — my-thing.txt picks up my-thing.png, .jpg, .jpeg,
+# .webp, .avif, .gif or .svg automatically. Nothing to configure.
+# To point somewhere else instead, set it explicitly:
+# image  = images/whatever.jpg

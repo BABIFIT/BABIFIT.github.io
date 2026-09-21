@@ -1,0 +1,19 @@
+# One project per file. Same fields as an inline block in info.txt,
+# but with no [section] header and no --- separator.
+#
+# A line that isn't "key = value" continues the field above it, so a
+# long description can wrap across as many lines as you like.
+#
+# This file must be listed under [project_files] in info.txt to appear.
+
+name   = Four-Machine Homelab
+status = in-progress
+type   = hybrid
+tech   = Linux, Virtualization, Backups, Networking
+
+desc   = A self-maintained four-machine homelab with 16TB of self-hosted off-site
+         backup redundancy, plus isolated VMs used as a sandbox for running AI
+         coding agents safely.
+
+url    = 
+note   = 

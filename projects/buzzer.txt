@@ -1,0 +1,20 @@
+# One project per file. Same fields as an inline block in info.txt,
+# but with no [section] header and no --- separator.
+#
+# A line that isn't "key = value" continues the field above it, so a
+# long description can wrap across as many lines as you like.
+#
+# List this file under [project_files] in info.txt or it won't appear.
+
+name   = Academic Team Lockout Buzzer Set
+status = in-progress
+type   = hardware
+tech   = KiCad, OpenSCAD, PCB Design
+
+desc   = A cost-effective lockout buzzer system for quiz bowl, designed from
+         scratch — PCB laid out in KiCad, enclosure and button housings modeled
+         in OpenSCAD. Commercial sets run several hundred dollars, which puts
+         them out of reach for a lot of teams that need them most.
+
+url    =
+note   =

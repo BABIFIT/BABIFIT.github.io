@@ -1,0 +1,18 @@
+# One project per file. Same fields as an inline block in info.txt,
+# but with no [section] header and no --- separator.
+#
+# A line that isn't "key = value" continues the field above it, so a
+# long description can wrap across as many lines as you like.
+#
+# This file must be listed under [project_files] in info.txt to appear.
+
+name   = Card Game → Video Game
+status = in-progress
+type   = software
+tech   = Godot, GDScript
+
+desc   = Adapting a card game into a video game in Godot, built together with a
+         friend.
+
+url    = 
+note   = 

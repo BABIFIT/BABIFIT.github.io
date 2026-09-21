@@ -1,0 +1,39 @@
+# Keeps projects/index.txt in sync with the projects/ folder.
+#
+# GitHub Pages serves no directory listings, so the site needs a manifest
+# of which project files exist. This regenerates it on every push, which
+# means you can add a project by committing one .txt and nothing else.
+#
+# Don't want the Action? Delete this file and run ./make-index.sh yourself
+# before pushing — the result is identical.
+name: Update project index
+
+on:
+  push:
+    paths:
+      - 'projects/**'
+      - 'make-index.sh'
+
+permissions:
+  contents: write
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate projects/index.txt
+        run: ./make-index.sh
+
+      - name: Commit if it changed
+        run: |
+          if git diff --quiet -- projects/index.txt; then
+            echo "Index already up to date."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projects/index.txt
+          git commit -m "Update project index"
+          git push

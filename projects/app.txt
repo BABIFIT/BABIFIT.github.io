@@ -1,0 +1,18 @@
+# One project per file. Same fields as an inline block in info.txt,
+# but with no [section] header and no --- separator.
+#
+# A line that isn't "key = value" continues the field above it, so a
+# long description can wrap across as many lines as you like.
+#
+# This file must be listed under [project_files] in info.txt to appear.
+
+name   = Startup Dating App
+status = proprietary
+type   = software
+tech   = Redacted
+
+desc   = Coding and bringing a startup dating app to market.
+
+url    = 
+note   = Details withheld while this is pre-market — happy to discuss what I'm able
+         to in conversation.

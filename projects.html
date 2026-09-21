@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects</title>
+  <meta name="description" content="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Source+Code+Pro:wght@400;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<!-- Project cards are built from the [projects] section of info.txt. -->
+<body data-page="projects" data-auto-popup="false">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<dialog class="modal" id="philosophy-modal" aria-labelledby="philosophy-title">
+  <div class="modal-inner" tabindex="-1">
+    <p class="modal-eyebrow">Before you look around</p>
+    <h2 id="philosophy-title">How I use AI</h2>
+    <div data-statement></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" data-close-philosophy>Continue</button>
+    </div>
+  </div>
+</dialog>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html" data-field="initials"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="projects.html" aria-current="page">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="notice-bar">
+  <div class="container">
+    <p data-field="projects_notice"></p>
+  </div>
+</div>
+
+<main id="main">
+  <section>
+    <div class="container">
+      <p class="section-label">Projects</p>
+      <h2 class="section-title">Things I've built, am building, and have been a part of</h2>
+
+      <div class="tabs" role="tablist" aria-label="Project status">
+        <button class="tab" id="tab-finished" data-tab="finished" role="tab"
+                aria-selected="false" aria-controls="panel-finished" tabindex="-1">
+          Finished<span class="count"></span>
+        </button>
+        <button class="tab" id="tab-in-progress" data-tab="in-progress" role="tab"
+                aria-selected="false" aria-controls="panel-in-progress" tabindex="-1">
+          In Progress<span class="count"></span>
+        </button>
+        <button class="tab" id="tab-proprietary" data-tab="proprietary" role="tab"
+                aria-selected="false" aria-controls="panel-proprietary" tabindex="-1">
+          Proprietary<span class="count"></span>
+        </button>
+        <button class="tab" id="tab-small" data-tab="small" role="tab"
+                aria-selected="false" aria-controls="panel-small" tabindex="-1">
+          Small Stuff<span class="count"></span>
+        </button>
+      </div>
+
+      <div class="tab-panel" id="panel-finished" data-panel="finished" role="tabpanel" aria-labelledby="tab-finished" tabindex="0" hidden>
+        <p class="tab-intro">Shipped, working, and done. Code, pictures, and writeups provided where they exist.</p>
+        <p class="empty-state" hidden>Nothing here yet.</p>
+
+        <section class="subcat" id="finished-hardware" data-empty="true">
+          <div class="subcat-heading">
+            <h3>Hardware</h3>
+            <span class="rule"></span>
+            <span class="n"></span>
+          </div>
+          <div class="card-grid" id="grid-finished-hardware"></div>
+        </section>
+        <section class="subcat" id="finished-software" data-empty="true">
+          <div class="subcat-heading">
+            <h3>Software</h3>
+            <span class="rule"></span>
+            <span class="n"></span>
+          </div>
+          <div class="card-grid" id="grid-finished-software"></div>
+        </section>
+        <section class="subcat" id="finished-hybrid" data-empty="true">
+          <div class="subcat-heading">
+            <h3>Hybrid</h3>
+            <span class="rule"></span>
+            <span class="n"></span>
+          </div>
+          <div class="card-grid" id="grid-finished-hybrid"></div>
+        </section>
+      </div>
+      <div class="tab-panel" id="panel-in-progress" data-panel="in-progress" role="tabpanel" aria-labelledby="tab-in-progress" tabindex="0" hidden>
+        <p class="tab-intro">Actively being built right now. Stuff I'm just maintaining at this point is in "Finished" tab.</p>
+        <p class="empty-state" hidden>Nothing here yet.</p>
+
+        <section class="subcat" id="in-progress-hardware" data-empty="true">
+          <div class="subcat-heading">
+            <h3>Hardware</h3>
+            <span class="rule"></span>
+            <span class="n"></span>
+          </div>
+          <div class="card-grid" id="grid-in-progress-hardware"></div>
+        </section>
+        <section class="subcat" id="in-progress-software" data-empty="true">
+          <div class="subcat-heading">
+            <h3>Software</h3>
+            <span class="rule"></span>
+            <span class="n"></span>
+          </div>
+          <div class="card-grid" id="grid-in-progress-software"></div>
+        </section>
+        <section class="subcat" id="in-progress-hybrid" data-empty="true">
+          <div class="subcat-heading">
+            <h3>Hybrid</h3>
+            <span class="rule"></span>
+            <span class="n"></span>
+          </div>
+          <div class="card-grid" id="grid-in-progress-hybrid"></div>
+        </section>
+      </div>
+      <div class="tab-panel" id="panel-proprietary" data-panel="proprietary" role="tabpanel" aria-labelledby="tab-proprietary" tabindex="0" hidden>
+        <p class="tab-intro">Work I'm not ready to detail publicly since it is under NDA, unreleased, or otherwise not mine to disclose. Listed for scope and role only; happy to discuss what I'm able to in an interview/conversation.</p>
+        <p class="empty-state" hidden>Nothing here yet.</p>
+
+        <section class="subcat" id="proprietary-hardware" data-empty="true">
+          <div class="subcat-heading">
+            <h3>Hardware</h3>
+            <span class="rule"></span>
+            <span class="n"></span>
+          </div>
+          <div class="card-grid" id="grid-proprietary-hardware"></div>
+        </section>
+        <section class="subcat" id="proprietary-software" data-empty="true">
+          <div class="subcat-heading">
+            <h3>Software</h3>
+            <span class="rule"></span>
+            <span class="n"></span>
+          </div>
+          <div class="card-grid" id="grid-proprietary-software"></div>
+        </section>
+        <section class="subcat" id="proprietary-hybrid" data-empty="true">
+          <div class="subcat-heading">
+            <h3>Hybrid</h3>
+            <span class="rule"></span>
+            <span class="n"></span>
+          </div>
+          <div class="card-grid" id="grid-proprietary-hybrid"></div>
+        </section>
+      </div>
+
+      <div class="tab-panel" id="panel-small" data-panel="small" role="tabpanel" aria-labelledby="tab-small" tabindex="0" hidden>
+        <p class="tab-intro">Small stuff that isn't
+        big enough for a card of its' own but still worth mentioning.</p>
+        <p class="empty-state" hidden>Nothing here yet.</p>
+        <ul class="marked-list small-list" id="small-list"></ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <span>© <span id="year"></span> <span data-field="name"></span></span>
+    <span class="foot-links">
+      <a href="index.html">About</a>
+      <a href="#" data-open-philosophy>AI statement</a>
+      <span data-links="footer" class="contents"></span>
+    </span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

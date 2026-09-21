@@ -1,0 +1,19 @@
+# One project per file. Same fields as an inline block in info.txt,
+# but with no [section] header and no --- separator.
+#
+# A line that isn't "key = value" continues the field above it, so a
+# long description can wrap across as many lines as you like.
+#
+# This file must be listed under [project_files] in info.txt to appear.
+
+name   = Retro PC & CRT Restoration
+status = in-progress
+type   = hardware
+tech   = Board-level Repair, Soldering, Oscilloscope
+
+desc   = Ongoing board-level repair and restoration of retro computers and CRT
+         displays — diagnosis down to the component, recapping, and bringing dead
+         hardware back to working order.
+
+url    = 
+note   = 
