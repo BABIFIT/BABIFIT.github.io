@@ -9,11 +9,9 @@
 name   = Four-Machine Homelab
 status = finished
 type   = hybrid
-tech   = Linux, Virtualization, Backups, Networking
+tech   = Linux, Virtualization, Backups, Networking, Cybersecurity
 
-desc   = A self-maintained four-machine homelab with 16TB of self-hosted off-site
-         backup redundancy, plus isolated VMs used as a sandbox for running AI
-         coding agents safely.
+desc   = A self-maintained four-machine homelab consisting of a computer server, twinned NASes with one serving as an encrypted offsite backup, and an AsusWRT router running guest networks and my VPN server among other things.
 
 url    = 
 note   = 

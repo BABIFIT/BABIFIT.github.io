@@ -6,12 +6,12 @@ name   = Leveraging AI Models to ID and Sell Pokemon Cards
 status = in-progress
 # hardware | software | hybrid
 type   = software
-tech   =
+tech   = AI Development, Python, OCR, Image Recognition, Java
 
-desc   =
+desc   = A business partner and I have been developing a way to automatically detect, list, and sell Pokemon cards on eBay. Most of the software is written by him, but the python part that leverages OCR was done by me. My portion takes in the scanned card, extracts text from certain areas, then looks for key identifiers to figure out exactly what card it is. The pairing works well since his ORB/Hash match algorithm is fast, and it can call on my much more computationally expensive OCR algorithm when it is uncertain, since the OCR pass is near-perfect on a clean scan. Note: the source is public for portfolio review only. It carries no license, so all rights are reserved.
 
 # Link to a repo, demo, or write-up. Leave empty for no link.
-url    =
+url    = https://github.com/willtryon/pokecard
 # Bordered callout on the card. Good for "what I can say" on
 # proprietary work.
 note   =

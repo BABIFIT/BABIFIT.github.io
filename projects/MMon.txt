@@ -6,13 +6,12 @@
 #
 # This file must be listed under [project_files] in info.txt to appear.
 
-name   = Card Game → Video Game
+name   = Digitizing a New Card Game
 status = proprietary
 type   = software
-tech   = Godot, GDScript
+tech   = Godot, GDScript, Game Design
 
-desc   = Adapting a card game into a video game in Godot, built together with a
-         friend.
+desc   = A partner and I are currently adapting a highly complex card game we developed into a Godot video game. We hope to begin selling it soon.
 
 url    = 
 note   = 

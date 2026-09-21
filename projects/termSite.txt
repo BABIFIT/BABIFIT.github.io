@@ -1,17 +1,17 @@
 # Copy this file, rename it, and add the new name to [project_files]
 # in info.txt. Files starting with _ are ignored unless you list them.
 
-name   = Texting-like Command Line Interface For Accessibility
+name   = ThisMachine: Texting-like Command Line Interface For Accessibility
 # finished | in-progress | future | proprietary
-status = finished
+status = in-progress
 # hardware | software | hybrid
 type   = software
-tech   =
+tech   = Linux, Python, Bash, Web Development, Cybersecurity
 
-desc   =
+desc   = Ultimately, computer terminals are just a set of messages sent between user and computer. But, the hacker-esque blinking cursor scares most people. To help introduce people to unix command lines, I have developed this standalone AppImage that can allow users to feel like they are logging into a website to "chat" or "text" with a computer. Messages "sent" are just piped to stdin, and messages "received" are just piped from stdout. In this way, even though it still ultimately needs at least a willingness to learn command syntax, this app can make things much more accessible to those just getting into command lines for the first time. Also, I have begun rigorously testing the security of this app for what I hope are obvious reasons. Though I have already verified that it blocks connections from other machines, I want to test it a bit harder before declaring it out of alpha for security reasons.
 
 # Link to a repo, demo, or write-up. Leave empty for no link.
-url    =
+url    = https://github.com/BABIFIT/ThisMachine
 # Bordered callout on the card. Good for "what I can say" on
 # proprietary work.
 note   =

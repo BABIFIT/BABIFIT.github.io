@@ -1,17 +1,17 @@
 # Copy this file, rename it, and add the new name to [project_files]
 # in info.txt. Files starting with _ are ignored unless you list them.
 
-name   = KDE Plasmoid Widget to Display Number of Open Windows
+name   = WindowCounter: KDE Plasmoid Widget to Display Number of Open Windows
 # finished | in-progress | future | proprietary
 status = finished
 # hardware | software | hybrid
 type   = software
-tech   =
+tech   = KDE Plasma, QML
 
-desc   =
+desc   = I made WindowCounter to count and display in widget form the number of windows open in apps that currently have more than 1. Before making this, window management on my 4-monitor desktop was quite a bit harder to keep track of...
 
 # Link to a repo, demo, or write-up. Leave empty for no link.
-url    =
+url    = https://github.com/BABIFIT/WindowCounter
 # Bordered callout on the card. Good for "what I can say" on
 # proprietary work.
 note   =

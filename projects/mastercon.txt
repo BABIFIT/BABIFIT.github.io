@@ -1,17 +1,17 @@
 # Copy this file, rename it, and add the new name to [project_files]
 # in info.txt. Files starting with _ are ignored unless you list them.
 
-name   = DB-37 Master-Connector to Connect Any of my PCs to a KVM Box
+name   = MasterConnector: a DB-37 Master-Connector to Connect Any Retro PC to a KVM Box
 # finished | in-progress | future | proprietary
 status = in-progress
 # hardware | software | hybrid
-type   = software
-tech   =
+type   = hardware
+tech   = Hardware Design
 
-desc   =
+desc   = I dislike having to deal with so many cables when swapping out machines I work with regularly. So, I have devised a way to use a 37-pin connector to carry everything other than power to a desktop. By having male plugs plugged into each desktop (or laptop) that are adapted to a male 37-pin, and a box with female jacks and a female 37-pin, any equipped PC can be swapped out with a single connector: mouse, keyboard, network, display, etc. I have also developed a way to use an Arduino to adapt the AT PS/2 keyboard protocol to XT for particularly old devices, and added switches that select keyboard/mouse protocol, and a switch to enable or disable ethernet at the hardware level.
 
 # Link to a repo, demo, or write-up. Leave empty for no link.
-url    =
+url    = https://github.com/BABIFIT/MasterConnector
 # Bordered callout on the card. Good for "what I can say" on
 # proprietary work.
 note   =

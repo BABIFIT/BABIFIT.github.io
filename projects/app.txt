@@ -9,10 +9,9 @@
 name   = Startup Dating App
 status = proprietary
 type   = software
-tech   = Redacted
+tech   = Web development, Mobile app development
 
-desc   = Coding and bringing a startup dating app to market.
+desc   = I am currently coding and bringing a startup dating app to market as its sole developer, and am about to start my first round of funding.
 
 url    = 
-note   = Details withheld while this is pre-market — happy to discuss what I'm able
-         to in conversation.
+note   =

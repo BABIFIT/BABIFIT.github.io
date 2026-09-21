@@ -59,7 +59,10 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
-body > * { position: relative; z-index: 1; }
+/* Dialogs are excluded: they live in the top layer and must stay pinned to
+   the viewport. Giving them position:relative here overrode the browser's own
+   dialog:modal rule and left them anchored to the top of the document. */
+body > *:not(dialog) { position: relative; z-index: 1; }
 
 a { color: var(--accent); text-decoration: none; transition: opacity .2s; }
 a:hover { opacity: .72; }
@@ -253,8 +256,10 @@ section[id] { scroll-margin-top: 5rem; }
 
 /* ─── Modal ───────────────────────────────────────────────────── */
 .modal {
+  position: fixed; inset: 0;    /* viewport-anchored, not document-anchored */
   border: none; padding: 0; background: transparent;
   width: min(640px, calc(100vw - 2rem));
+  height: fit-content;
   max-height: calc(100vh - 3rem);
   margin: auto;                 /* centre it in both axes */
   color: var(--text);
@@ -403,14 +408,57 @@ footer .foot-links { display: flex; gap: 1.1rem; flex-wrap: wrap; }
 
 /* ─── Project images (optional, same basename as the .txt) ────── */
 .project-media {
+  display: block; width: calc(100% + 3rem);
   margin: -1.5rem -1.5rem .3rem;
+  padding: 0; border: none;
   border-radius: var(--radius) var(--radius) 0 0;
+  border-bottom: 1px solid var(--border);
   overflow: hidden;
   aspect-ratio: 16 / 9;
-  background: var(--bg-raised);
-  border-bottom: 1px solid var(--border);
+  background: #000;                 /* letterbox bars, not a crop */
+  cursor: zoom-in;
 }
-.project-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* contain, never cover: the whole image is always visible */
+.project-media img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.project-media:hover img { opacity: .88; }
+
+/* ─── Clickable cards ─────────────────────────────────────────── */
+.project-card.is-clickable { cursor: pointer; }
+.project-card.is-clickable:hover { border-color: var(--accent); }
+
+/* ─── Lightbox ────────────────────────────────────────────────── */
+.lightbox {
+  position: fixed; inset: 0;    /* stays centred wherever the page is scrolled */
+  border: none; padding: 0; background: transparent;
+  width: fit-content; height: fit-content;
+  max-width: min(1200px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  margin: auto; overflow: visible;
+}
+.lightbox::backdrop { background: rgba(0, 0, 0, .92); }
+.lightbox figure { margin: 0; }
+.lightbox img {
+  display: block; margin: 0 auto;
+  max-width: min(1200px, calc(100vw - 2rem));
+  max-height: calc(100vh - 6rem);
+  width: auto; height: auto;
+  object-fit: contain;
+  background: #000;
+  border-radius: var(--radius);
+}
+.lightbox figcaption {
+  font-family: var(--font-mono); font-size: .8rem; color: var(--text-muted);
+  text-align: center; padding-top: .9rem;
+}
+.lightbox-close {
+  position: fixed; top: 1rem; right: 1.25rem;
+  width: 2.4rem; height: 2.4rem; line-height: 1;
+  font-size: 1.5rem; font-family: var(--font-body);
+  background: var(--bg-card); color: var(--text);
+  border: 1px solid var(--border-lit); border-radius: 50%;
+  cursor: pointer;
+}
+.lightbox-close:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ─── Small Stuff tab ─────────────────────────────────────────── */
 .small-list { max-width: 70ch; gap: .8rem; }

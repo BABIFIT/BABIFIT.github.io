@@ -6,14 +6,13 @@
 #
 # This file must be listed under [project_files] in info.txt to appear.
 
-name   = Retro PC & CRT Restoration
+name   = CRT Restoration
 status = in-progress
 type   = hybrid
-tech   = Board-level Repair, Soldering, Oscilloscope
+tech   = Board-level Repair, Soldering, Oscilloscope, Firmware Analysis
 
-desc   = Ongoing board-level repair and restoration of retro computers and CRT
-         displays — diagnosis down to the component, recapping, and bringing dead
-         hardware back to working order.
+desc   = Ongoing board-level repair and restoration of a CRT
+         display. I have it working, though not yet safely enough to call finished. I verified with a high-voltage probe that EHT sits at the rated 24.5 kV and that the X-ray protection circuit itself is the faulty part, so it is currently bypassed on the bench while I figure out exactly what is up with the X-ray. This project has made me quite knowledgeable in working with high voltage electronics, using oscilloscopes with different probes, and analyzing dumps of firmware chips from my XGecu T48.
 
 url    = 
 note   = 

@@ -19,7 +19,7 @@ name     = John S.
 initials = JS
 # Small line above your name in the hero:
 status   = Computer Engineering · Clemson · Class of 2028
-tagline  = Can't decide between hardware and software, so I decided to work on both. I have a particular affinity for all things retro!
+tagline  = Can't decide between hardware and software, so I decided to work on both. I also have a particular affinity for all things retro!
 # Shown in the browser tab and in link previews:
 meta_description = Portfolio of John S., computer engineering student at Clemson University.
 location = Clemson, SC
@@ -41,7 +41,7 @@ blurb    = Open to internship, full-time, and co-op conversations — reach out 
 # The one-liner in the banner strip under the nav.
 # The full statement comes from AIDisclaimer.txt, untouched.
 summary  = I use AI extensively — but never to replace my own thinking.
-headline = Reminder
+headline = How I use AI
 # Text on the banner button:
 button   = See my philosophy
 
@@ -49,15 +49,15 @@ button   = See my philosophy
 [about]
 # Free text. Blank lines separate paragraphs. No "key =" here.
 
-I am a young, smart, motivated Clemson student currently looking for an internship to hopefully lead to full-time employment after I graduate. I enjoy making technology accessible to those around me, particularly by bringing costs down, teaching people how to use what they already have, and repairing things when they break. In particular, I like to design circuits and then put them into production on PCBs as showcased with my lockout buzzer project. I also do a bit of 3D printing and modelling for that project and others, and I enjoy doing some coding and or server administration in the service of a larger project as well. In my free time, my real passion lies primarily with retro hardware and repair. There is nothing quite like breathing new life into a discarded IBM 5160 that is almost 25 years my senior, or restoring that soft whine and flicker to a CRT with blown caps!
+I am a highly motivated Clemson computer engineering student seeking an internship to hopefully lead to full-time employment after I graduate. I deeply enjoy making technology accessible to those around me, particularly by bringing costs down, teaching people how to use what they already have, and repairing things when they break. In particular, I like to design circuits and then put them into production on PCBs as showcased with my lockout buzzer project. I also do 3D printing and modelling for that project and others, and I enjoy coding and server administration in the service of a larger project. In my free time, my real passion lies primarily with retro hardware and repair. There is nothing quite like breathing new life into a discarded IBM 5160 that is almost 25 years my senior, or restoring that soft whine and flicker to a CRT with blown caps!
 
 
 [education]
 # Same format as [experience]. Newest first, separated by ---
 when   = 09/2024 — 05/2028
-role   = BS, Computer Engineering
+role   = BS, Computer Engineering (Expected 2028)
 org    = Clemson University — Clemson, SC
-detail = Senior by credits in my second year, 4.0 GPA. Minors in Computer Science and Business Administration.
+detail = 4.0 GPA with minors in Cybersecurity and Business Administration.
 
 
 [experience]
@@ -109,6 +109,13 @@ Coursework        = Signals and Systems, Electronics, Microcontrollers
 # (leave it empty) to hide the banner entirely.
 notice = This page and its contents are under construction. I'll be adding more projects and more detail whenever I can.
 
+# The popup that greets a visitor on the projects page. It fires once per
+# visitor and is remembered separately from the AI statement, so dismissing
+# one does not dismiss the other. Ctrl+Alt+D forgets both.
+# Clear popup_text to stop the popup appearing at all.
+popup_title = Before you dig in
+popup_text = My larger projects can be clicked on for more info, and I would be more than happy to discuss my work over email or in an interview!
+
 
 [projects_cta]
 # The panel on the homepage that points at the projects page.
@@ -127,9 +134,9 @@ button = Browse all projects
 # things too small for their own project file but still worth showing.
 
 - Reverse engineered and made a laptop charger that plugs into my car and uses a DC boost converter for my old gaming laptop.
-- Built a few custom cables and adapters for lab equipment, including and ESR tester for my Analog Discovery 3.
+- Built a few custom cables and adapters for lab equipment, including an ESR tester for my Analog Discovery 3.
 - Maintain lightweight QEMU Fedora Server VMs on my laptop, desktop, and server that sync work between them so that I can run Claude Code in a sandboxed environment anywhere I go. I have even ensured that these VMs have no LAN access to reduce potential attack surface if something does go bad with prompt injection.
-- Fully restored an original IBM Model F XT keyboard with spring-buckle switches from 1983, foam and all. It is 8 LBs of pure mechanical beauty, but PLEASE don't make me take the darn thing apart again!
+- Fully restored an original IBM Model F XT keyboard with buckling-spring switches from 1983, foam and all. It is 8 lbs of pure mechanical beauty, but PLEASE don't make me take the darn thing apart again!
 - Maintain 5 retro gaming rigs, including an original IBM 5160, a 486-based DOS machine, a Windows 98 gaming rig with an Athlon 1.3 GHz and FX 5950, a Windows XP gaming rig with a Phenom 9650, and a 4th gen Intel backup rig.
 - Designing and building analog guitar pedals for my electric guitar, including a finished LM358-based distortion pedal. I also hope to design a custom tuned vacuum tube amp for it when I have the time (and money!)
 

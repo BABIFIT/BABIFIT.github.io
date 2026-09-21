@@ -6,9 +6,9 @@ name   = IBM CGA Card Schematic Trace and Chip Replacement
 status = finished
 # hardware | software | hybrid
 type   = hardware
-tech   =
+tech   = Soldering, Hot Air Station
 
-desc   =
+desc   = I accidentally plugged my IBM CGA card into an 8-bit ISA backplane backward and it stopped working. After finding the schematics (thank God for the days when companies published their manuals openly), I traced the pins that received problematic voltages and found out that tri-state buffers rated to 5V REALLY don't like it when they have +-12V on some pins. I pulled out my hot air station and pencil iron, replaced only the chips I thought were probably bad with ones I ordered specially, and voila! The card works as good as new now!
 
 # Link to a repo, demo, or write-up. Leave empty for no link.
 url    =

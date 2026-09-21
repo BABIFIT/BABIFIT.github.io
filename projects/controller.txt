@@ -1,14 +1,14 @@
 # Copy this file, rename it, and add the new name to [project_files]
 # in info.txt. Files starting with _ are ignored unless you list them.
 
-name   = Board-Level PCB Dualsense 5 Repair
+name   = Board-Level DualSense Controller Repair
 # finished | in-progress | future | proprietary
 status = finished
 # hardware | software | hybrid
 type   = hardware
-tech   = Board-Level Repair, Soldering, Microscope
+tech   = Board-Level Repair, Soldering, Microscope, Hot Air Station
 
-desc   = In the course of replacing the potentiometer joysticks with TMRs, a pad ripped all the way to a micro via. So, I broke out the dremel, microscope, speaker wire, and some VERY steady hands and repaired the trace after sanding away the solder mask. After several tries, I got the submillimeter accuracy needed for it to work, and this controller is now the primary controller I use to play games.
+desc   = In the course of replacing the potentiometer joysticks with TMRs, a pad ripped all the way to a micro via. So, I broke out a Dremel, microscope, magnet wire, and some VERY steady hands and repaired the trace after sanding away the solder mask. After several tries, I got the submillimeter accuracy needed for it to work, and this controller is now the primary controller I use to play games.
 
 # Link to a repo, demo, or write-up. Leave empty for no link.
 url    =

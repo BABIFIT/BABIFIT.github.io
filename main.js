@@ -118,13 +118,17 @@
                     contact_blurb: contact.blurb,
                     cta_title: cta.title, cta_text: cta.text,
                     cta_button: cta.button,
-                    projects_notice: projectsPage.notice }[node.dataset.field];
+                    projects_notice: projectsPage.notice,
+                    popup_title: projectsPage.popup_title,
+                    popup_text: projectsPage.popup_text }[node.dataset.field];
       if (value) node.textContent = value;
       else if (node.dataset.optional === 'true') node.hidden = true;
     });
 
     var noticeBar = $('.notice-bar');
     if (noticeBar) noticeBar.hidden = !projectsPage.notice;
+
+    if (!projectsPage.popup_text) document.body.dataset.autoPopupProjects = 'false';
 
     // Contact links: one button per non-empty entry, in a fixed order.
     var linkSpec = [
@@ -276,6 +280,19 @@
         card.appendChild(a);
       }
       attachImage(card, p);
+
+      // Whole card follows the project link, for the people who expect that.
+      // The link inside stays the keyboard-accessible control; this is a
+      // mouse convenience, so it deliberately adds no second tab stop.
+      if (p.url) {
+        card.classList.add('is-clickable');
+        card.addEventListener('click', function (e) {
+          if (e.target.closest('a, button')) return;     // let real controls work
+          if (String(window.getSelection())) return;     // don't hijack text selection
+          window.open(p.url, '_blank', 'noopener');
+        });
+      }
+
       grid.appendChild(card);
     });
 
@@ -351,8 +368,15 @@
     img.alt = project.name ? project.name + ' — project image' : '';
 
     img.onload = function () {
-      var media = el('div', 'project-media');
+      var media = el('button', 'project-media');
+      media.type = 'button';
+      media.setAttribute('aria-label',
+        (project.name ? project.name + ': ' : '') + 'view image full size');
       media.appendChild(img);
+      media.addEventListener('click', function (e) {
+        e.stopPropagation();          // don't also follow the card's link
+        openLightbox(img.src, project.name || '');
+      });
       card.insertBefore(media, card.firstChild);
     };
     img.onerror = function () { next(); };
@@ -362,6 +386,46 @@
       img.src = candidates[i++];
     }
     next();
+  }
+
+  /* ── Lightbox ─────────────────────────────────────────────────
+     Click a project image to see it full size. Letterboxed on black
+     rather than cropped, so nothing is cut off. */
+  var lightbox = null;
+
+  function openLightbox(src, caption) {
+    if (!lightbox) {
+      lightbox = el('dialog', 'lightbox');
+      var figure = el('figure');
+      var img = el('img');
+      img.alt = '';
+      var cap = el('figcaption');
+      var close = el('button', 'lightbox-close', '\u00d7');
+      close.type = 'button';
+      close.setAttribute('aria-label', 'Close image');
+      figure.appendChild(img);
+      figure.appendChild(cap);
+      lightbox.appendChild(close);
+      lightbox.appendChild(figure);
+      document.body.appendChild(lightbox);
+
+      close.addEventListener('click', function () { lightbox.close(); });
+      lightbox.addEventListener('click', function (e) {
+        // Anywhere outside the picture closes it.
+        if (e.target === lightbox || e.target.tagName === 'FIGURE') lightbox.close();
+      });
+      lightbox.__img = img;
+      lightbox.__cap = cap;
+    }
+
+    lightbox.__img.src = src;
+    lightbox.__img.alt = caption;
+    lightbox.__cap.textContent = caption;
+    if (typeof lightbox.showModal === 'function') {
+      if (!lightbox.open) lightbox.showModal();
+    } else {
+      lightbox.setAttribute('open', '');
+    }
   }
 
   function statusLabel(status) {
@@ -586,56 +650,84 @@
       .filter(Boolean);
   }
 
-  /* ── The modal itself ─────────────────────────────────────────
-     Auto-opens once per visitor on the homepage; the banner button
-     and footer link reopen it anywhere, any time. */
-  var SEEN_KEY = 'ai-philosophy-seen';
+  /* ── Modals ───────────────────────────────────────────────────
+     Two independent popups, each remembered separately:
+       philosophy-modal — the AI statement, auto-opens on the homepage
+       projects-modal   — the projects intro, auto-opens on the projects page
+     A visitor who has dismissed one still sees the other. Ctrl+Alt+D
+     forgets both, so the first-visit behaviour can be retested. */
+  var MODALS = [
+    { id: 'philosophy-modal', key: 'ai-philosophy-seen',
+      open: '[data-open-philosophy]', close: '[data-close-philosophy]',
+      auto: 'autoPopup' },
+    { id: 'projects-modal', key: 'projects-intro-seen',
+      open: '[data-open-projects]', close: '[data-close-projects]',
+      auto: 'autoPopupProjects' }
+  ];
 
-  function initModal() {
-    var modal = document.getElementById('philosophy-modal');
-    if (!modal) return;
+  function initModals() {
+    var anyAuto = false;
 
-    var inner = $('.modal-inner', modal);
+    MODALS.forEach(function (spec) {
+      var modal = document.getElementById(spec.id);
+      if (!modal) return;
 
-    function open() {
-      if (typeof modal.showModal === 'function') { if (!modal.open) modal.showModal(); }
-      else modal.setAttribute('open', '');
-      // showModal() focuses the first control, which can scroll the heading
-      // out of view on a long statement. Start at the top instead.
-      if (inner) { inner.scrollTop = 0; inner.focus(); }
-      try { localStorage.setItem(SEEN_KEY, '1'); } catch (e) { /* private mode */ }
-    }
+      var inner = $('.modal-inner', modal);
 
-    $$('[data-open-philosophy]').forEach(function (btn) {
-      btn.addEventListener('click', function (e) { e.preventDefault(); open(); });
+      function open() {
+        if (typeof modal.showModal === 'function') { if (!modal.open) modal.showModal(); }
+        else modal.setAttribute('open', '');
+        // showModal() focuses the first control, which can scroll the heading
+        // out of view on a long statement. Start at the top instead.
+        if (inner) { inner.scrollTop = 0; inner.focus(); }
+        try { localStorage.setItem(spec.key, '1'); } catch (e) { /* private mode */ }
+      }
+
+      $$(spec.open).forEach(function (btn) {
+        btn.addEventListener('click', function (e) { e.preventDefault(); open(); });
+      });
+      $$(spec.close).forEach(function (btn) {
+        btn.addEventListener('click', function () { modal.close(); });
+      });
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) modal.close();            // backdrop click
+      });
+
+      if (document.body.dataset[spec.auto] !== 'true') return;
+      anyAuto = true;
+
+      var seen = '1';
+      try { seen = localStorage.getItem(spec.key); } catch (e) { seen = null; }
+      if (!seen) {
+        // Let the page paint first so it reads as intentional, not a jump-scare.
+        // Re-check the flag on the way in: content loads after this runs and
+        // may have switched the popup off (e.g. its text was left blank).
+        window.setTimeout(function () {
+          if (document.body.dataset[spec.auto] === 'true') open();
+        }, 450);
+      }
     });
-    $$('[data-close-philosophy]').forEach(function (btn) {
-      btn.addEventListener('click', function () { modal.close(); });
-    });
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) modal.close();              // backdrop click
-    });
 
-    var seen = '1';
-    try { seen = localStorage.getItem(SEEN_KEY); } catch (e) { seen = null; }
-    if (!seen && document.body.dataset.autoPopup === 'true') {
-      // Let the page paint first so it reads as intentional, not a jump-scare.
-      window.setTimeout(open, 450);
-    }
+    initResetShortcut(anyAuto);
+  }
 
-    // Ctrl+Alt+D forgets that this browser has seen the statement, so the
-    // first-visit popup can be tested again.
+  /* Ctrl+Alt+D forgets every popup this browser has seen. */
+  function initResetShortcut(reloadAfter) {
     document.addEventListener('keydown', function (e) {
       if (!e.ctrlKey || !e.altKey || (e.key || '').toLowerCase() !== 'd') return;
       e.preventDefault();
+
       var ok = true;
-      try { localStorage.removeItem(SEEN_KEY); } catch (err) { ok = false; }
+      MODALS.forEach(function (spec) {
+        try { localStorage.removeItem(spec.key); } catch (err) { ok = false; }
+      });
+
       if (!ok) { toast('Could not reset — storage is blocked in this browser.'); return; }
-      if (document.body.dataset.autoPopup === 'true') {
-        toast('AI statement reset — reloading…');
+      if (reloadAfter) {
+        toast('Popups reset — reloading…');
         window.setTimeout(function () { window.location.reload(); }, 700);
       } else {
-        toast('AI statement reset — it will show on the homepage.');
+        toast('Popups reset — they will show on their own pages.');
       }
     });
   }
@@ -716,7 +808,7 @@
   };
 
   document.addEventListener('DOMContentLoaded', function () {
-    initModal();
+    initModals();
     initReveal();
     var yr = document.getElementById('year');
     if (yr) yr.textContent = new Date().getFullYear();

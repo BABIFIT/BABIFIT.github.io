@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <!-- Project cards are built from the [projects] section of info.txt. -->
-<body data-page="projects" data-auto-popup="false">
+<body data-page="projects" data-auto-popup="false" data-auto-popup-projects="true">
 
 <a class="skip-link" href="#main">Skip to content</a>
 
@@ -23,6 +23,19 @@
     <div data-statement></div>
     <div class="modal-actions">
       <button class="btn btn-primary" data-close-philosophy>Continue</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Projects intro — fires once per visitor, tracked separately from the
+     AI statement. Text comes from [projects_page] popup in info.txt. -->
+<dialog class="modal" id="projects-modal" aria-labelledby="projects-modal-title">
+  <div class="modal-inner" tabindex="-1">
+    <p class="modal-eyebrow">A quick note</p>
+    <h2 id="projects-modal-title" data-field="popup_title">Looking around</h2>
+    <p data-field="popup_text"></p>
+    <div class="modal-actions">
+      <button class="btn btn-primary" data-close-projects>Continue</button>
     </div>
   </div>
 </dialog>
@@ -99,7 +112,7 @@
         </section>
       </div>
       <div class="tab-panel" id="panel-in-progress" data-panel="in-progress" role="tabpanel" aria-labelledby="tab-in-progress" tabindex="0" hidden>
-        <p class="tab-intro">Actively being built right now. Stuff I'm just maintaining at this point is in "Finished" tab.</p>
+        <p class="tab-intro">Actively being built right now. Stuff I'm just maintaining at this point is in the "Finished" tab.</p>
         <p class="empty-state" hidden>Nothing here yet.</p>
 
         <section class="subcat" id="in-progress-hardware" data-empty="true">
@@ -159,7 +172,7 @@
 
       <div class="tab-panel" id="panel-small" data-panel="small" role="tabpanel" aria-labelledby="tab-small" tabindex="0" hidden>
         <p class="tab-intro">Small stuff that isn't
-        big enough for a card of its' own but still worth mentioning.</p>
+        big enough for a card of its own but still worth mentioning.</p>
         <p class="empty-state" hidden>Nothing here yet.</p>
         <ul class="marked-list small-list" id="small-list"></ul>
       </div>

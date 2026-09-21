@@ -6,15 +6,15 @@
 #
 # List this file under [project_files] in info.txt or it won't appear.
 
-name   = Academic Team Lockout Buzzer Set
+name   = AcadBuzz: Academic Team Lockout Buzzer Set
 status = in-progress
 type   = hardware
-tech   = KiCad, OpenSCAD, PCB Design
+tech   = KiCAD, OpenSCAD, PCB Design, 3D printing
 
 desc   = A cost-effective lockout buzzer system for quiz bowl, designed from
-         scratch — PCB laid out in KiCad, enclosure and button housings modeled
+         scratch — PCB laid out in KiCAD, enclosure and button housings modeled for 3D printing
          in OpenSCAD. Commercial sets run several hundred dollars, which puts
-         them out of reach for a lot of teams that need them most.
+         them out of reach for a lot of teams that need them most, but this set can be made for under $20. It might sell for a bit more due to labor, shipping and handling, but being a logic-gate only implementation with just 12 gates total and no clock keeps costs down and keeps it outside FCC Part 15's definition of a digital device altogether.
 
-url    =
+url    = https://github.com/BABIFIT/AcadBuzz
 note   =
